@@ -34,7 +34,7 @@ Kubectl get hpa -n guestbook —watch
 <pre>
 kubectl run -it --rm load-generator --image=busybox /bin/sh
 
-while true; do wget -q -O- http://<your-ip>; done
+while true; do wget -q -O- http://{guestbook-external-ip}; done
 </pre>
 - Switch to previous tab and see HPA o/p, after few mins you should see load incresing and deployment scaled
 <pre>
