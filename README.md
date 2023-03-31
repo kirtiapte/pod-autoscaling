@@ -36,7 +36,7 @@ kubectl run -it --rm load-generator --image=busybox /bin/sh
 
 while true; do wget -q -O- http://{guestbook-external-ip}; done
 </pre>
-- Switch to previous tab and see HPA o/p, after few mins you should see load incresing and deployment scaled
+- Switch to previous tab and see HPA o/p, after few mins you should see load increasing and deployment scaled
 <pre>
 NAME                            REFERENCE                                        TARGET      MINPODS   MAXPODS   REPLICAS   AGE
 guestbook-frontend-deployment   Deployment/guestbook-frontend-deployment/scale   305% / 50%  1         8   
@@ -49,7 +49,7 @@ guestbook-frontend-deployment   Deployment/guestbook-frontend-deployment/scale  
 
 ## Verital Pod Autoscaler (VPA)
 ### Overview
-Vertical Pod autoscaling is an autoscaling tool to help size Pods for the optimal CPU and memory resources required by the Pods. The VPA automatically computes historic and current CPU and memory usage for the containers in those pods and uses this data to determine optimized resource limits and requests to ensure that these pods are operating efficiently at all times. The VPA automatically deletes any pods that are out of alignment with its recommendations one at a time, so that your applications can continue to serve requests with no downtime. The workload objects then re-deploy the pods with the original resource limits and requests. The VPA uses a mutating admission web-hook to update the pods with optimized resource limits and requests before the pods are admitted to a node. If you do not want the VPA to delete pods, you can view the VPA resource limits and requests and manually update the pods as needed.The target reference allows us to specify which workload is subject to the actions of the VPA, and for our use-case we have a deployment eg.shopping-blue . It could be any of Deployment, DaemonSet, ReplicaSet, StatefulSet, ReplicationController, Job, or CronJob.
+Vertical Pod autoscaling is an autoscaling tool to help size Pods for the optimal CPU and memory resources required by the Pods. The VPA automatically computes historic and current CPU and memory usage for the containers in those pods and uses this data to determine optimized resource limits and requests to ensure that these pods are operating efficiently at all times. The VPA automatically deletes any pods that are out of alignment with its recommendations one at a time, so that your applications can continue to serve requests with no downtime. The workload objects then re-deploy the pods with the original resource limits and requests. The VPA uses a mutating admission web-hook to update the pods with optimized resource limits and requests before the pods are admitted to a node. If you do not want the VPA to delete pods, you can view the VPA resource limits and requests and manually update the pods as needed.The target reference allows us to specify which workload is subject to the actions of the VPA, and for our use-case we have a deployment eg.guestbook-frontend-deployment . It could be any of Deployment, DaemonSet, ReplicaSet, StatefulSet, ReplicationController, Job, or CronJob.
 
 ### Components of vpa:
 
